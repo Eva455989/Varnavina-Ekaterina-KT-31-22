@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
+using varnavina_ekaterina_kt_31_22.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -9,9 +11,15 @@ try
 {
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
+
+    // Добавление сервисов
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    // Настройка контекста базы данных
+    builder.Services.AddDbContext<ProfessorDbContext>(options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
     var app = builder.Build();
 

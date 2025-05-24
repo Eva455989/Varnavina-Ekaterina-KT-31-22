@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "varnavina-ekaterina-kt-31-22", "varnavina-ekaterina-kt-31-22\varnavina-ekaterina-kt-31-22.csproj", "{6888AF83-D625-43FF-959C-E7EBF3D1CAE5}"
 EndProject

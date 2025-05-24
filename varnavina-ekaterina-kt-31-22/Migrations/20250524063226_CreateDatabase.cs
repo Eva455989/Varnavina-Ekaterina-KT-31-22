@@ -114,7 +114,7 @@ namespace varnavina_ekaterina_kt_31_22.Migrations
                     TeacherId = table.Column<int>(type: "integer", nullable: false),
                     DisciplineId = table.Column<int>(type: "integer", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    TeacherId1 = table.Column<int>(type: "integer", nullable: true)
+                    DisciplineId1 = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,16 +126,16 @@ namespace varnavina_ekaterina_kt_31_22.Migrations
                         principalColumn: "DisciplineId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Loads_Disciplines_DisciplineId1",
+                        column: x => x.DisciplineId1,
+                        principalTable: "Disciplines",
+                        principalColumn: "DisciplineId");
+                    table.ForeignKey(
                         name: "FK_Loads_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "TeacherId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Loads_Teachers_TeacherId1",
-                        column: x => x.TeacherId1,
-                        principalTable: "Teachers",
-                        principalColumn: "TeacherId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -159,14 +159,14 @@ namespace varnavina_ekaterina_kt_31_22.Migrations
                 column: "DisciplineId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Loads_DisciplineId1",
+                table: "Loads",
+                column: "DisciplineId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Loads_TeacherId",
                 table: "Loads",
                 column: "TeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Loads_TeacherId1",
-                table: "Loads",
-                column: "TeacherId1");
         }
 
         /// <inheritdoc />

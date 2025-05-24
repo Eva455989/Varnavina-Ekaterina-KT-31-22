@@ -12,7 +12,7 @@ using varnavina_ekaterina_kt_31_22.Data;
 namespace varnavina_ekaterina_kt_31_22.Migrations
 {
     [DbContext(typeof(ProfessorDbContext))]
-    [Migration("20250516153729_CreateDatabase")]
+    [Migration("20250524063226_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -123,6 +123,9 @@ namespace varnavina_ekaterina_kt_31_22.Migrations
                     b.Property<int>("DisciplineId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("DisciplineId1")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Hours")
                         .HasColumnType("integer");
 
@@ -134,16 +137,13 @@ namespace varnavina_ekaterina_kt_31_22.Migrations
                     b.Property<int>("TeacherId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("TeacherId1")
-                        .HasColumnType("integer");
-
                     b.HasKey("LoadId");
 
                     b.HasIndex("DisciplineId");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex("DisciplineId1");
 
-                    b.HasIndex("TeacherId1");
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("Loads", (string)null);
                 });
@@ -233,19 +233,24 @@ namespace varnavina_ekaterina_kt_31_22.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("varnavina_ekaterina_kt_31_22.Models.Discipline", null)
+                        .WithMany("Loads")
+                        .HasForeignKey("DisciplineId1");
+
                     b.HasOne("varnavina_ekaterina_kt_31_22.Models.Teacher", "Teacher")
-                        .WithMany()
+                        .WithMany("Loads")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("varnavina_ekaterina_kt_31_22.Models.Teacher", null)
-                        .WithMany("Loads")
-                        .HasForeignKey("TeacherId1");
-
                     b.Navigation("Discipline");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("varnavina_ekaterina_kt_31_22.Models.Discipline", b =>
+                {
+                    b.Navigation("Loads");
                 });
 
             modelBuilder.Entity("varnavina_ekaterina_kt_31_22.Models.Teacher", b =>

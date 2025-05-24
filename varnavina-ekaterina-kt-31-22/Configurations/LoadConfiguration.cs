@@ -11,7 +11,7 @@ namespace varnavina_ekaterina_kt_31_22.Models.Configurations
             builder.Property(l => l.Hours)
                    .IsRequired();
             builder.HasOne(l => l.Teacher)
-                   .WithMany()
+                   .WithMany(t => t.Loads)
                    .HasForeignKey(l => l.TeacherId)
                    .OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(l => l.Discipline) // Связь с Discipline

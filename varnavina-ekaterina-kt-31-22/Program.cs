@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 using varnavina_ekaterina_kt_31_22.Data;
+using varnavina_ekaterina_kt_31_22.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -20,6 +21,7 @@ try
     // Настройка контекста базы данных
     builder.Services.AddDbContext<ProfessorDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    builder.Services.AddCustomServices();
 
     var app = builder.Build();
 

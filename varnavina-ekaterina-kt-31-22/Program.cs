@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 using varnavina_ekaterina_kt_31_22.Data;
+using varnavina_ekaterina_kt_31_22.Middlewares;
 using varnavina_ekaterina_kt_31_22.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +38,8 @@ try
         });
     }
 
+
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
     app.UseAuthorization();
     app.MapControllers();
     app.Run();

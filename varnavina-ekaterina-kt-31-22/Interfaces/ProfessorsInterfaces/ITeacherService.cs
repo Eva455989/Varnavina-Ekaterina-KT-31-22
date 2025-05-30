@@ -6,13 +6,13 @@ namespace varnavina_ekaterina_kt_31_22.Interfaces.ProfessorsInterfaces
 {
     public interface ITeacherService
     {
-        Task<IEnumerable<Teacher>> GetAllAsync();
-        Task<Teacher?> GetByIdAsync(int id);
-        Task<Teacher> AddAsync(Teacher teacher);
-        Task<Teacher?> UpdateAsync(Teacher teacher);
+        Task<IEnumerable<Professor>> GetAllAsync();
+        Task<Professor?> GetByIdAsync(int id);
+        Task<Professor> AddAsync(Professor teacher);
+        Task<Professor?> UpdateAsync(Professor teacher);
         Task<bool> SoftDeleteAsync(int id);
     }
-
+    //6.	Добавление/изменение удаление преподавателей
     public class TeacherService : ITeacherService
     {
         private readonly ProfessorDbContext _context;
@@ -22,21 +22,21 @@ namespace varnavina_ekaterina_kt_31_22.Interfaces.ProfessorsInterfaces
             _context = context;
         }
 
-        public async Task<IEnumerable<Teacher>> GetAllAsync()
+        public async Task<IEnumerable<Professor>> GetAllAsync()
         {
             return await _context.Teachers
                 .Where(t => !t.IsDeleted)
                 .ToListAsync();
         }
 
-        public async Task<Teacher?> GetByIdAsync(int id)
+        public async Task<Professor?> GetByIdAsync(int id)
         {
             return await _context.Teachers
                 .Where(t => !t.IsDeleted && t.TeacherId == id)
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Teacher> AddAsync(Teacher teacher)
+        public async Task<Professor> AddAsync(Professor teacher)
         {
             teacher.IsDeleted = false;
             _context.Teachers.Add(teacher);
@@ -44,14 +44,14 @@ namespace varnavina_ekaterina_kt_31_22.Interfaces.ProfessorsInterfaces
             return teacher;
         }
 
-        public async Task<Teacher?> UpdateAsync(Teacher teacher)
+        public async Task<Professor?> UpdateAsync(Professor teacher)
         {
             var existing = await _context.Teachers.FirstOrDefaultAsync(t => t.TeacherId == teacher.TeacherId && !t.IsDeleted);
             if (existing == null) return null;
 
             existing.FirstName = teacher.FirstName;
             existing.LastName = teacher.LastName;
-            // Можно добавить обновление других свойств при необходимости
+            
 
             await _context.SaveChangesAsync();
             return existing;

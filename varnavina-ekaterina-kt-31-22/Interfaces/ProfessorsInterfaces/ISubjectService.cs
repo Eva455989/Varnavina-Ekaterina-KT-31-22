@@ -9,7 +9,8 @@ namespace varnavina_ekaterina_kt_31_22.Interfaces.ProfessorsInterfaces
         Task<IEnumerable<Discipline>> GetDisciplinesFilteredAsync(int? teacherId, int? minLoad, int? maxLoad);
     }
 
-    // Реализация интерфейса в том же файле (по условию лабораторной)
+    // 1.	Получение списка дисциплин (учесть фильтрацию по преподавателю, по диапазону в нагрузке – например выводить дисциплины с
+    // нагрузкой от 20 до 30 часов за семестр)
     public class SubjectService : ISubjectService
     {
         private readonly ProfessorDbContext _context;
@@ -21,9 +22,8 @@ namespace varnavina_ekaterina_kt_31_22.Interfaces.ProfessorsInterfaces
 
         public async Task<IEnumerable<Discipline>> GetDisciplinesFilteredAsync(int? teacherId, int? minLoad, int? maxLoad)
         {
-            // Запрос дисциплин, учитывая soft-delete
             var query = _context.Disciplines
-                .Where(d => !d.IsDeleted)
+                .Where(d => !d.IsDeleted) // Убедитесь, что это условие присутствует
                 .AsQueryable();
 
             if (teacherId.HasValue)
@@ -31,7 +31,6 @@ namespace varnavina_ekaterina_kt_31_22.Interfaces.ProfessorsInterfaces
                 query = query.Where(d => d.TeacherId == teacherId.Value);
             }
 
-            // Получаем нагрузки по дисциплинам
             var disciplinesWithLoad = await query
                 .Select(d => new
                 {
@@ -40,14 +39,19 @@ namespace varnavina_ekaterina_kt_31_22.Interfaces.ProfessorsInterfaces
                 })
                 .ToListAsync();
 
-            // Фильтрация по диапазону нагрузки
             if (minLoad.HasValue)
+            {
                 disciplinesWithLoad = disciplinesWithLoad.Where(x => x.TotalLoad >= minLoad.Value).ToList();
+            }
 
             if (maxLoad.HasValue)
+            {
                 disciplinesWithLoad = disciplinesWithLoad.Where(x => x.TotalLoad <= maxLoad.Value).ToList();
+            }
 
             return disciplinesWithLoad.Select(x => x.Discipline).ToList();
         }
+
+
     }
 }

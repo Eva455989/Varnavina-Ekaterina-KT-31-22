@@ -14,7 +14,7 @@ namespace varnavina_ekaterina_kt_31_22.Models.Configurations
                    .WithMany(t => t.Loads)
                    .HasForeignKey(l => l.TeacherId)
                    .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(l => l.Discipline) // Связь с Discipline
+            builder.HasOne(l => l.Discipline)
                    .WithMany()
                    .HasForeignKey(l => l.DisciplineId)
                    .OnDelete(DeleteBehavior.Cascade);

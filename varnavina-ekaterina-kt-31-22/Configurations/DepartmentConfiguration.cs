@@ -11,13 +11,13 @@ namespace varnavina_ekaterina_kt_31_22.Models.Configurations
             builder.Property(d => d.DepartmentName)
                    .IsRequired()
                    .HasMaxLength(100);
-            builder.Property(d => d.FoundedDate) // Теперь это свойство существует
+            builder.Property(d => d.FoundedDate) 
                    .IsRequired();
             builder.Property(d => d.IsDeleted)
                    .HasDefaultValue(false);
-            builder.HasOne(d => d.Head) // Исправлено с HeadTeacher на Head
+            builder.HasOne(d => d.Head) 
                    .WithMany()
-                   .HasForeignKey(d => d.HeadId) // Исправлено с HeadTeacherId на HeadId
+                   .HasForeignKey(d => d.HeadId) 
                    .OnDelete(DeleteBehavior.Cascade);
             builder.ToTable("Departments");
         }

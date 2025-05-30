@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "varnavina-ekaterina-kt-31-22", "varnavina-ekaterina-kt-31-22\varnavina-ekaterina-kt-31-22.csproj", "{6888AF83-D625-43FF-959C-E7EBF3D1CAE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Varnavina-Ekaterina-KT-31-22.Tests", "Varnavina-Ekaterina-KT-31-22.Tests\Varnavina-Ekaterina-KT-31-22.Tests.csproj", "{D138258F-7B8D-4EA9-88E1-32E0159BE24F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6888AF83-D625-43FF-959C-E7EBF3D1CAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6888AF83-D625-43FF-959C-E7EBF3D1CAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6888AF83-D625-43FF-959C-E7EBF3D1CAE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D138258F-7B8D-4EA9-88E1-32E0159BE24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D138258F-7B8D-4EA9-88E1-32E0159BE24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D138258F-7B8D-4EA9-88E1-32E0159BE24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D138258F-7B8D-4EA9-88E1-32E0159BE24F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

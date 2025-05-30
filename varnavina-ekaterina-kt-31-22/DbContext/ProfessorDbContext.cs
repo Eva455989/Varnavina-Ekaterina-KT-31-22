@@ -8,7 +8,7 @@ namespace varnavina_ekaterina_kt_31_22.Data
     {
         // Добавляем таблицы
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Professor> Teachers { get; set; }
         public DbSet<Degree> Degrees { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Discipline> Disciplines { get; set; }

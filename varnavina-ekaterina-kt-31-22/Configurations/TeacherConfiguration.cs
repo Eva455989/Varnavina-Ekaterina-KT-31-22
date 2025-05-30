@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace varnavina_ekaterina_kt_31_22.Models.Configurations
 {
-    public class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
+    public class TeacherConfiguration : IEntityTypeConfiguration<Professor>
     {
-        public void Configure(EntityTypeBuilder<Teacher> builder)
+        public void Configure(EntityTypeBuilder<Professor> builder)
         {
             builder.HasKey(t => t.TeacherId);
             builder.Property(t => t.FirstName)

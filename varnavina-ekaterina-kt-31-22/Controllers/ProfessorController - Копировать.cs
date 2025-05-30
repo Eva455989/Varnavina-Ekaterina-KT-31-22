@@ -36,7 +36,7 @@ namespace varnavina_ekaterina_kt_31_22.Controllers
 
             return Ok(teacher);
         }
- 
+
         // POST api/professor/teachers
         [HttpPost("AddTeacher")]
         public async Task<IActionResult> AddTeacher([FromBody] Professor teacher)
